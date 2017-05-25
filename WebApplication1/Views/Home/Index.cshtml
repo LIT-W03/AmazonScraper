@@ -1,0 +1,39 @@
+﻿@using WebApplication1.Controllers
+@model HomePageViewModel
+
+<div class="row" style="margin-top: 80px;">
+    <form method="get" action="/home/index">
+        <div class="row">
+            <div class="col-md-8">
+                <input type="text" style="width: 100%;" class="form-control" placeholder="Search Amazon" name="query" value="@Model.Query" />
+            </div>
+            <div class="col-md-2">
+                <button class="btn btn-block btn-primary">Search</button>
+            </div>
+        </div>
+    </form>
+    @if (Model.Items != null)
+    {
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th>Image</th>
+                <th>Title</th>
+                <th>ASIN</th>
+                <th>Price</th>
+            </tr>
+            @foreach (AmazonItem item in Model.Items)
+            {
+                <tr>
+                    <td>
+                        <img src="@item.Image" />
+                    </td>
+                    <td>
+                        <a href="@item.Url" target="_blank">@item.Title</a>
+                    </td>
+                    <td>@item.ASIN</td>
+                    <td>@item.Price</td>
+                </tr>
+            }
+        </table>
+    }
+</div>
